@@ -5,12 +5,16 @@
     <classes>
       <class name="com.example.tests.GroupCreationTests">
         <methods>
-          <include name="tearDown"/>
-          <include name="testEmptyGroupCreation"/>
           <include name="setUp"/>
-          <include name="testNonEmptyGroupCreation"/>
+          <include name="tearDown"/>
         </methods>
       </class> <!-- com.example.tests.GroupCreationTests -->
+      <class name="com.example.tests.CopyOfGroupCreationTests">
+        <methods>
+          <include name="testNonEmptyGroupCreation"/>
+          <include name="testEmptyGroupCreation"/>
+        </methods>
+      </class> <!-- com.example.tests.CopyOfGroupCreationTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
