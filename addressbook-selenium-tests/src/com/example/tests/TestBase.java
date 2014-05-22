@@ -10,6 +10,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -99,5 +100,45 @@ public class TestBase {
 	      acceptNextAlert = true;
 	    }
 	  }
+
+	protected void returnToMainPage() {
+		driver.findElement(By.linkText("home page")).click();
+	}
+
+	protected void submitClientCreation() {
+		driver.findElement(By.name("submit")).click();
+	}
+
+	protected void fillClientForm(ClientData client) {
+		driver.findElement(By.name("firstname")).clear();
+	    driver.findElement(By.name("firstname")).sendKeys(client.first_name);
+	    driver.findElement(By.name("lastname")).clear();
+	    driver.findElement(By.name("lastname")).sendKeys(client.last_name);
+	    driver.findElement(By.name("address")).clear();
+	    driver.findElement(By.name("address")).sendKeys(client.address);
+	    driver.findElement(By.name("home")).clear();
+	    driver.findElement(By.name("home")).sendKeys(client.home_phone);
+	    driver.findElement(By.name("mobile")).clear();
+	    driver.findElement(By.name("mobile")).sendKeys(client.mobile_phone);
+	    driver.findElement(By.name("work")).clear();
+	    driver.findElement(By.name("work")).sendKeys(client.work_phone);
+	    driver.findElement(By.name("email")).clear();
+	    driver.findElement(By.name("email")).sendKeys(client.email);
+	    driver.findElement(By.name("email2")).clear();
+	    driver.findElement(By.name("email2")).sendKeys(client.email_2);
+	    new Select(driver.findElement(By.name("bday"))).selectByVisibleText(client.birth_day);
+	    new Select(driver.findElement(By.name("bmonth"))).selectByVisibleText(client.birth_month);
+	    driver.findElement(By.name("byear")).clear();
+	    driver.findElement(By.name("byear")).sendKeys(client.birth_year);
+	    new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(client.group);
+	    driver.findElement(By.name("address2")).clear();
+	    driver.findElement(By.name("address2")).sendKeys(client.address_2);
+	    driver.findElement(By.name("phone2")).clear();
+	    driver.findElement(By.name("phone2")).sendKeys(client.home_phone_2);
+	}
+
+	protected void initClientCreation() {
+		driver.findElement(By.linkText("add new")).click();
+	}
 
 }

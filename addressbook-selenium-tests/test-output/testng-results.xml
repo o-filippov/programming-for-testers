@@ -1,39 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="4" passed="4">
+<testng-results skipped="0" failed="1" total="7" passed="6">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="10995" started-at="2014-05-21T19:48:48Z" finished-at="2014-05-21T19:48:59Z">
+  <suite name="Default suite" duration-ms="44243" started-at="2014-05-22T22:01:23Z" finished-at="2014-05-22T22:02:07Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="10995" started-at="2014-05-21T19:48:48Z" finished-at="2014-05-21T19:48:59Z">
+    <test name="Default test" duration-ms="44243" started-at="2014-05-22T22:01:23Z" finished-at="2014-05-22T22:02:07Z">
       <class name="com.example.tests.CopyOfGroupCreationTests">
-        <test-method status="PASS" signature="testEmptyGroupCreation()[pri:0, instance:com.example.tests.CopyOfGroupCreationTests@f5f2bb7]" name="testEmptyGroupCreation" duration-ms="653" started-at="2014-05-21T22:48:57Z" finished-at="2014-05-21T22:48:58Z">
+        <test-method status="PASS" signature="testEmptyGroupCreation()[pri:0, instance:com.example.tests.CopyOfGroupCreationTests@3ecf72fd]" name="testEmptyGroupCreation" duration-ms="653" started-at="2014-05-23T01:02:06Z" finished-at="2014-05-23T01:02:07Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testEmptyGroupCreation -->
-        <test-method status="PASS" signature="testNonEmptyGroupCreation()[pri:0, instance:com.example.tests.CopyOfGroupCreationTests@f5f2bb7]" name="testNonEmptyGroupCreation" duration-ms="675" started-at="2014-05-21T22:48:58Z" finished-at="2014-05-21T22:48:59Z">
+        <test-method status="PASS" signature="testNonEmptyGroupCreation()[pri:0, instance:com.example.tests.CopyOfGroupCreationTests@3ecf72fd]" name="testNonEmptyGroupCreation" duration-ms="700" started-at="2014-05-23T01:02:07Z" finished-at="2014-05-23T01:02:07Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testNonEmptyGroupCreation -->
       </class> <!-- com.example.tests.CopyOfGroupCreationTests -->
-      <class name="com.example.tests.GroupCreationTests">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.example.tests.GroupCreationTests@47d384ee]" name="setUp" is-config="true" duration-ms="7737" started-at="2014-05-21T22:48:48Z" finished-at="2014-05-21T22:48:55Z">
+      <class name="com.example.tests.TestBase">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.example.tests.TestBase@282ba1e]" name="setUp" is-config="true" duration-ms="7527" started-at="2014-05-23T01:01:23Z" finished-at="2014-05-23T01:01:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testEmptyGroupCreation()[pri:0, instance:com.example.tests.GroupCreationTests@47d384ee]" name="testEmptyGroupCreation" duration-ms="963" started-at="2014-05-21T22:48:56Z" finished-at="2014-05-21T22:48:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testEmptyGroupCreation -->
-        <test-method status="PASS" signature="testNonEmptyGroupCreation()[pri:0, instance:com.example.tests.GroupCreationTests@47d384ee]" name="testNonEmptyGroupCreation" duration-ms="798" started-at="2014-05-21T22:48:56Z" finished-at="2014-05-21T22:48:57Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testNonEmptyGroupCreation -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.example.tests.GroupCreationTests@47d384ee]" name="tearDown" is-config="true" duration-ms="149" started-at="2014-05-21T22:48:59Z" finished-at="2014-05-21T22:48:59Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.example.tests.TestBase@282ba1e]" name="tearDown" is-config="true" duration-ms="142" started-at="2014-05-23T01:02:07Z" finished-at="2014-05-23T01:02:07Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
+      </class> <!-- com.example.tests.TestBase -->
+      <class name="com.example.tests.GroupCreationTests">
+        <test-method status="PASS" signature="testEmptyGroupCreation()[pri:0, instance:com.example.tests.GroupCreationTests@483bf400]" name="testEmptyGroupCreation" duration-ms="670" started-at="2014-05-23T01:02:05Z" finished-at="2014-05-23T01:02:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEmptyGroupCreation -->
+        <test-method status="PASS" signature="testNonEmptyGroupCreation()[pri:0, instance:com.example.tests.GroupCreationTests@483bf400]" name="testNonEmptyGroupCreation" duration-ms="682" started-at="2014-05-23T01:02:05Z" finished-at="2014-05-23T01:02:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNonEmptyGroupCreation -->
       </class> <!-- com.example.tests.GroupCreationTests -->
+      <class name="com.example.tests.ClientCreationTests">
+        <test-method status="FAIL" signature="testEmptyClientCreation()[pri:0, instance:com.example.tests.ClientCreationTests@21a06946]" name="testEmptyClientCreation" duration-ms="31061" started-at="2014-05-23T01:01:31Z" finished-at="2014-05-23T01:02:02Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[Cannot locate element with text: 
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.39.0', revision: 'ff23eac', time: '2013-12-16 16:11:15'
+System info: host: 'Squirrel-Helper', ip: '192.168.1.179', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_05'
+Driver info: driver.version: unknown]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: Cannot locate element with text: 
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.39.0', revision: 'ff23eac', time: '2013-12-16 16:11:15'
+System info: host: 'Squirrel-Helper', ip: '192.168.1.179', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_05'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:147)
+	at com.example.tests.TestBase.fillClientForm(TestBase.java:130)
+	at com.example.tests.ClientCreationTests.testEmptyClientCreation(ClientCreationTests.java:75)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEmptyClientCreation -->
+        <test-method status="PASS" signature="testEmptyExceptForDateOfBirthAndGroupClientCreation()[pri:0, instance:com.example.tests.ClientCreationTests@21a06946]" name="testEmptyExceptForDateOfBirthAndGroupClientCreation" duration-ms="1364" started-at="2014-05-23T01:02:02Z" finished-at="2014-05-23T01:02:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEmptyExceptForDateOfBirthAndGroupClientCreation -->
+        <test-method status="PASS" signature="testNonEmptyClientCreation()[pri:0, instance:com.example.tests.ClientCreationTests@21a06946]" name="testNonEmptyClientCreation" duration-ms="1409" started-at="2014-05-23T01:02:03Z" finished-at="2014-05-23T01:02:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNonEmptyClientCreation -->
+      </class> <!-- com.example.tests.ClientCreationTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
