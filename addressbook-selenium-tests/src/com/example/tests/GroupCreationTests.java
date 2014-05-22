@@ -28,8 +28,3 @@ public class GroupCreationTests extends TestBase {
     returnToGroupsPage();
   }
 }
-
-
-// public class GroupCreationTests {
-
-// }
