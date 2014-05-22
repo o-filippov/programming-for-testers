@@ -105,11 +105,11 @@ public class TestBase {
 		driver.findElement(By.linkText("home page")).click();
 	}
 
-	protected void submitClientCreation() {
+	protected void submitContactCreation() {
 		driver.findElement(By.name("submit")).click();
 	}
 
-	protected void fillClientForm(ClientData client) {
+	protected void fillContactForm(ContactData client) {
 		driver.findElement(By.name("firstname")).clear();
 	    driver.findElement(By.name("firstname")).sendKeys(client.first_name);
 	    driver.findElement(By.name("lastname")).clear();
@@ -137,7 +137,7 @@ public class TestBase {
 	    driver.findElement(By.name("phone2")).sendKeys(client.home_phone_2);
 	}
 
-	protected void initClientCreation() {
+	protected void initContactCreation() {
 		driver.findElement(By.linkText("add new")).click();
 	}
 

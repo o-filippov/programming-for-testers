@@ -9,11 +9,11 @@
           <include name="tearDown"/>
         </methods>
       </class> <!-- com.example.tests.TestBase -->
-      <class name="com.example.tests.ClientCreationTests">
+      <class name="com.example.tests.ContactCreationTests">
         <methods>
-          <include name="testEmptyClientCreation"/>
+          <include name="testEmptyContactCreation"/>
         </methods>
-      </class> <!-- com.example.tests.ClientCreationTests -->
+      </class> <!-- com.example.tests.ContactCreationTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

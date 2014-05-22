@@ -1,6 +1,6 @@
 package com.example.tests;
 
-public class ClientData {
+public class ContactData {
 	public String first_name;
 	public String last_name;
 	public String address;
@@ -16,10 +16,10 @@ public class ClientData {
 	public String address_2;
 	public String home_phone_2;
 
-	public ClientData() {
+	public ContactData() {
 		}
 
-	public ClientData(String first_name, String last_name, String address,
+	public ContactData(String first_name, String last_name, String address,
 			String home_phone, String mobile_phone, String work_phone,
 			String email, String email_2, String birth_day, String birth_month,
 			String birth_year, String group, String address_2,
