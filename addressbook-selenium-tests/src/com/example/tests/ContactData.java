@@ -19,7 +19,7 @@ public class ContactData {
 	public ContactData() {
 		}
 
-	public ContactData(String first_name, String last_name, String address,
+	/* public ContactData(String first_name, String last_name, String address,
 			String home_phone, String mobile_phone, String work_phone,
 			String email, String email_2, String birth_day, String birth_month,
 			String birth_year, String group, String address_2,
@@ -38,5 +38,5 @@ public class ContactData {
 		this.group = group;
 		this.address_2 = address_2;
 		this.home_phone_2 = home_phone_2;
-	}
+	} */
 }
