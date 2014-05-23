@@ -30,30 +30,6 @@ public class ContactCreationTests extends TestBase {
   }
   
   @Test
-  public void testEmptyExceptForDateOfBirthAndGroupContactCreation() throws Exception {
-	openMainPage();
-	initContactCreation();
-	ContactData contact = new ContactData();
-	contact.first_name = "";
-	contact.last_name  = "";
-	contact.address = "";
-	contact.home_phone = "";
-	contact.mobile_phone = "";
-	contact.work_phone = "";
-	contact.email = "";
-	contact.email_2 = "";
-	contact.birth_day = "1";
-	contact.birth_month = "January";
-	contact.birth_year = "1978";
-	contact.group = "Rob";
-	contact.address_2 = "";
-	contact.home_phone_2 = "";	
-	fillContactForm(contact);
-	submitContactCreation();
-	returnToMainPage();
-  }
-  
-  @Test
   public void testEmptyContactCreation() throws Exception {
 	openMainPage();
 	initContactCreation();
@@ -66,10 +42,10 @@ public class ContactCreationTests extends TestBase {
     contact.work_phone = "";
     contact.email = "";
     contact.email_2 = "";
-    contact.birth_day = "";
-    contact.birth_month = "";
+    contact.birth_day = "-";
+    contact.birth_month = "-";
     contact.birth_year = "";
-    contact.group = "";
+    contact.group = "[none]";
     contact.address_2 = "";
     contact.home_phone_2 = "";	
 	fillContactForm(contact);
