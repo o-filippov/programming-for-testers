@@ -24,7 +24,7 @@ public class ContactCreationTests extends TestBase {
     contact.group = "Rob";
     contact.address_2 = "21 Secondary Napilnika str.";
     contact.home_phone_2 = "1111111";
-    app.getContactHelper().fillContactForm(app, this, contact);
+    app.getContactHelper().fillContactForm(contact);
     app.getContactHelper().submitContactCreation();
     app.getContactHelper().returnToMainPage();
  }
@@ -48,7 +48,7 @@ public class ContactCreationTests extends TestBase {
     contact.group = "[none]";
     contact.address_2 = "";
     contact.home_phone_2 = "";	
-    app.getContactHelper().fillContactForm(app, this, contact);
+    app.getContactHelper().fillContactForm(contact);
     app.getContactHelper().submitContactCreation();
     app.getContactHelper().returnToMainPage();
   }
