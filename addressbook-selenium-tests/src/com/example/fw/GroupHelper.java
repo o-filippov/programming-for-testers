@@ -38,7 +38,6 @@ public class GroupHelper extends HelperBase {
 	}
 
 	public void initGroupModification(int index) {
-		selectGroupByIndex(index);
 		click(By.name("edit"));
 	}
 
