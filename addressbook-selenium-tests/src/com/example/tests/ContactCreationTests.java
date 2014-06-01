@@ -1,6 +1,5 @@
 package com.example.tests;
 
-// import org.junit.*;
 import org.testng.annotations.Test;
 
 public class ContactCreationTests extends TestBase {

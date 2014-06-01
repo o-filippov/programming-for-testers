@@ -1,7 +1,6 @@
 package com.example.fw;
 
 import org.openqa.selenium.By;
-
 import com.example.tests.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -46,7 +45,7 @@ public class ContactHelper extends HelperBase {
 		}
 
 	public void initContactEditingByIndex(int index) {
-		click(By.xpath("(//img[@alt='Edit'])[" + index + "]"));
+		click(By.xpath("(//img[@alt='Edit'])[" + (index + 1) + "]"));
 		}
 
 	public void submitContactModification() {

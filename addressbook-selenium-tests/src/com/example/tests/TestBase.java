@@ -2,12 +2,11 @@ package com.example.tests;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-
 import com.example.fw.ApplicationManager;
 
 public class TestBase {
 	
-	protected ApplicationManager app;
+	protected static ApplicationManager app;
 
 	@BeforeTest
 	public void setUp() throws Exception {
