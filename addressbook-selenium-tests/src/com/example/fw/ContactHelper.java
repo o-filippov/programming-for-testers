@@ -1,7 +1,10 @@
 package com.example.fw;
 
-import org.openqa.selenium.By;
 import com.example.tests.ContactData;
+import java.util.ArrayList;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class ContactHelper extends HelperBase {
 
@@ -51,4 +54,23 @@ public class ContactHelper extends HelperBase {
 	public void submitContactModification() {
 		click(By.xpath("(//input[@name='update'])[1]"));
 	}
+
+	public List<ContactData> getContacts() {
+		List<ContactData> contacts = new ArrayList<ContactData>();
+		List<WebElement> checkboxes = driver.findElements(By.name("selected[]"));
+		for (WebElement checkbox : checkboxes) {
+			ContactData contact = new ContactData();
+			String title = checkbox.getAttribute("title");
+			title = title.substring("Select (".length(), title.length() - ")".length());
+			contact.last_name = title.substring(title.lastIndexOf(" " + 1));
+			if (String.valueOf(title.charAt(0)) == " ") {
+				contact.first_name = "";
+			} else contact.first_name = title.substring(title.length() - contact.last_name.length());
+			contacts.add(contact);
+		}
+		return contacts;
+	}
+	
+
+	
 }
