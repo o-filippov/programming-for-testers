@@ -1,10 +1,11 @@
 package com.example.tests;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.Collections;
 import java.util.List;
 
 import org.testng.annotations.Test;
-import static org.testng.Assert.assertEquals;
 
 public class ContactCreationTests extends TestBase {
   
@@ -18,8 +19,8 @@ public class ContactCreationTests extends TestBase {
 	// actions
 	app.getContactHelper().initContactCreation();
 	ContactData contact = new ContactData();
-    contact.first_name = "1";
-    contact.last_name  = "as;dfhasf";
+    contact.first_name = "fn";
+    contact.last_name  = "ln";
     contact.address = "20 Tester street";
     contact.home_phone = "+380441234567";
     contact.mobile_phone = "+380501234567";
@@ -50,8 +51,8 @@ public class ContactCreationTests extends TestBase {
 	app.getNavigationHelper().openMainPage();
 	app.getContactHelper().initContactCreation();
 	ContactData contact = new ContactData();
-	contact.first_name = "";
-    contact.last_name  = "";
+	contact.first_name = "fn";
+    contact.last_name  = "ln";
     contact.address = "";
     contact.home_phone = "";
     contact.mobile_phone = "";

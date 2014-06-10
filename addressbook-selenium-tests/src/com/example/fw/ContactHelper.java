@@ -62,15 +62,29 @@ public class ContactHelper extends HelperBase {
 			ContactData contact = new ContactData();
 			String title = checkbox.getAttribute("title");
 			title = title.substring("Select (".length(), title.length() - ")".length());
-			contact.last_name = title.substring(title.lastIndexOf(" " + 1));
-			if (String.valueOf(title.charAt(0)) == " ") {
-				contact.first_name = "";
-			} else contact.first_name = title.substring(title.length() - contact.last_name.length());
+			String ln = null;
+			String fn = null;
+			if (!title.equals(" ")) {												// check if first and last names are not empty
+				if (Character.isWhitespace(0)) {
+					ln = title.trim();
+					fn = "";
+				}	else if (title.substring(title.length() - 1).equals(" ")) {		// check if last name is empty
+						ln = "";
+						fn = title.trim();
+					} 	else {														// if first name is empty
+							String[] parts = title.split(" ");
+							fn = parts[0]; 
+							ln = parts[1];
+						}
+			} else {																// in the case when first and last names are empty
+				ln = ""; 
+				fn = "";
+			}
+			contact.last_name = ln;
+			contact.first_name = fn;
 			contacts.add(contact);
 		}
 		return contacts;
 	}
-	
-
 	
 }
