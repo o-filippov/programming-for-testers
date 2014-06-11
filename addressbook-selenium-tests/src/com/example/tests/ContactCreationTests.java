@@ -2,15 +2,42 @@ package com.example.tests;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ContactCreationTests extends TestBase {
-  
-  @Test
-  public void testNonEmptyContactCreation() throws Exception {
+	
+	@DataProvider
+	public Iterator<Object[]> randomValidContactGenerator() {
+		List<Object[]> list = new ArrayList<Object[]>();
+		for (int i = 0; i < 5; i++) {
+			ContactData contact = new ContactData();
+			contact.first_name = generateRandomString();
+			contact.last_name = generateRandomString();
+			contact.address = generateRandomString();
+			contact.home_phone = app.getContactHelper().generateRandomNumber();
+			contact.mobile_phone = app.getContactHelper().generateRandomNumber();
+			contact.work_phone = app.getContactHelper().generateRandomNumber();
+			contact.email = generateRandomString();
+			contact.email_2 = generateRandomString();
+			contact.birth_day = app.getContactHelper().generateRandomDay();
+			contact.birth_month = "-"; // should be done in the future
+			contact.birth_year = app.getContactHelper().generateRandomYear();
+			contact.group = "[none]"; // probably should be done in the future
+			contact.address_2 = generateRandomString();
+			contact.home_phone_2 = app.getContactHelper().generateRandomNumber();
+			list.add(new Object[]{contact});
+		}
+		return list.iterator();
+	}
+	
+  @Test(dataProvider = "randomValidContactGenerator")
+  public void testContactCreationWithValidData(ContactData contact) throws Exception {
 	app.getNavigationHelper().openMainPage();
 	
 	// save state
@@ -18,21 +45,6 @@ public class ContactCreationTests extends TestBase {
 	
 	// actions
 	app.getContactHelper().initContactCreation();
-	ContactData contact = new ContactData();
-    contact.first_name = "fn";
-    contact.last_name  = "ln";
-    contact.address = "20 Tester street";
-    contact.home_phone = "+380441234567";
-    contact.mobile_phone = "+380501234567";
-    contact.work_phone = "+380671234567";
-    contact.email = "tester@test.com";
-    contact.email_2 = "privatetestersaddress@test.com";
-    contact.birth_day = "1";
-    contact.birth_month = "January";
-    contact.birth_year = "1978";
-    contact.group = "Rob";
-    contact.address_2 = "21 Secondary Napilnika str.";
-    contact.home_phone_2 = "1111111";
     app.getContactHelper().fillContactForm(contact);
     app.getContactHelper().submitContactCreation();
     app.getContactHelper().returnToMainPage();

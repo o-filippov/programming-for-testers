@@ -3,6 +3,8 @@ package com.example.fw;
 import com.example.tests.ContactData;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import org.openqa.selenium.By;
 
 public class ContactHelper extends HelperBase {
@@ -66,6 +68,42 @@ public class ContactHelper extends HelperBase {
 			contacts.add(contact);
 		}
 		return contacts;
+	}
+	
+	public String generateRandomYear() {
+		Random rnd = new Random();
+		if (rnd.nextInt(3) == 0) {
+			return "";
+		} else {
+			return String.valueOf(rnd.nextInt(110) + 1900);
+		}
+	}
+	
+	public String generateRandomDay() {
+		Random rnd = new Random();
+		if (rnd.nextInt(3) == 0) {
+			return "-";
+		} else {
+			return String.valueOf(rnd.nextInt(31) + 1);
+		}
+	}
+	
+	public String generateRandomNumber() {
+		Random rnd = new Random();
+		if (rnd.nextInt(3) == 0) {
+			return "";
+		} else {
+			return String.valueOf(Math.abs(rnd.nextInt()));
+		}
+	}
+	
+	public String generateRandomString() {
+		Random rnd = new Random();
+		if (rnd.nextInt(3) == 0) {
+			return "";
+		} else {
+			return "Test" + rnd.nextInt();
+		}
 	}
 
 }
