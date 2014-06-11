@@ -4,7 +4,6 @@ import com.example.tests.ContactData;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class ContactHelper extends HelperBase {
 
@@ -57,34 +56,16 @@ public class ContactHelper extends HelperBase {
 
 	public List<ContactData> getContacts() {
 		List<ContactData> contacts = new ArrayList<ContactData>();
-		List<WebElement> checkboxes = driver.findElements(By.name("selected[]"));
-		for (WebElement checkbox : checkboxes) {
+		int number_of_rows = Integer.parseInt(driver.findElement(By.xpath("//body/div/div[4]/label/strong/span")).getText()); // may be calculated with " = driver.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[1]")).size();"
+		for (int i = 2; i <= number_of_rows; i++) {
 			ContactData contact = new ContactData();
-			String title = checkbox.getAttribute("title");
-			title = title.substring("Select (".length(), title.length() - ")".length());
-			String ln = null;
-			String fn = null;
-			if (!title.equals(" ")) {												// check if first and last names are not empty
-				if (Character.isWhitespace(0)) {
-					ln = title.trim();
-					fn = "";
-				}	else if (title.substring(title.length() - 1).equals(" ")) {		// check if last name is empty
-						ln = "";
-						fn = title.trim();
-					} 	else {														// if first name is empty
-							String[] parts = title.split(" ");
-							fn = parts[0]; 
-							ln = parts[1];
-						}
-			} else {																// in the case when first and last names are empty
-				ln = ""; 
-				fn = "";
-			}
-			contact.last_name = ln;
-			contact.first_name = fn;
+			contact.last_name = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
+			contact.first_name = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
+			contact.email = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
+			contact.home_phone = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[5]")).getText();
 			contacts.add(contact);
 		}
 		return contacts;
 	}
-	
+
 }

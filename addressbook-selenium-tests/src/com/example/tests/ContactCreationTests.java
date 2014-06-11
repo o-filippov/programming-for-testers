@@ -51,8 +51,8 @@ public class ContactCreationTests extends TestBase {
 	app.getNavigationHelper().openMainPage();
 	app.getContactHelper().initContactCreation();
 	ContactData contact = new ContactData();
-	contact.first_name = "fn";
-    contact.last_name  = "ln";
+	contact.first_name = "1";
+    contact.last_name  = "2";
     contact.address = "";
     contact.home_phone = "";
     contact.mobile_phone = "";

@@ -17,7 +17,7 @@ public class ContactModificationTests extends TestBase {
 		List<ContactData> oldList = app.getContactHelper().getContacts();
 		
 		// actions
-		int index = 0;
+		int index = 0; //number of the contact to be modified
 		
 		app.getContactHelper().initContactEditingByIndex(index);
 		ContactData contact = new ContactData();
