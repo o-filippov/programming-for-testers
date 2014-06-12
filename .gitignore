@@ -12,4 +12,6 @@
 hs_err_pid*
 
 .settings
-.test-output/
+./addressbook-selenium-tests/test-output/
+./test-output/
+
