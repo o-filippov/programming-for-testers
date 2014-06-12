@@ -49,8 +49,6 @@ public class GroupHelper extends HelperBase {
 		click(By.name("update"));
 	}
 
-	
-	// на 12:40 Алексей открывает исходный код джавы нажимая ссылку. Как?
 	public List<GroupData> getGroups() {
 		List<GroupData> groups = new ArrayList<GroupData>();
 		List<WebElement> checkboxes = driver.findElements(By.name("selected[]"));

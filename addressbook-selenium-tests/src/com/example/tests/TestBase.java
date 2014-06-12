@@ -48,4 +48,67 @@ public class TestBase {
 		}
 	}
 	
+	@DataProvider
+	public Iterator<Object[]> randomValidContactGenerator() {
+		List<Object[]> list = new ArrayList<Object[]>();
+		for (int i = 0; i < 5; i++) {
+			ContactData contact = new ContactData();
+			contact.first_name = generateRandomString();
+			contact.last_name = generateRandomString();
+			contact.address = generateRandomString();
+			contact.home_phone = generateRandomNumber();
+			contact.mobile_phone = generateRandomNumber();
+			contact.work_phone = generateRandomNumber();
+			contact.email = generateRandomString();
+			contact.email_2 = generateRandomString();
+			contact.birth_day = generateRandomDay();
+			contact.birth_month = generateRandomMonth();
+			contact.birth_year = generateRandomYear();
+			contact.group = "[none]"; // probably should be done in the future
+			contact.address_2 = generateRandomString();
+			contact.home_phone_2 = generateRandomNumber();
+			list.add(new Object[]{contact});
+		}
+		return list.iterator();
+	}
+	
+	public String generateRandomYear() {
+		Random rnd = new Random();
+		if (rnd.nextInt(3) == 0) {
+			return "";
+		} else {
+			return String.valueOf(rnd.nextInt(110) + 1900);
+		}
+	}
+	
+	public String generateRandomDay() {
+		Random rnd = new Random();
+		if (rnd.nextInt(3) == 0) {
+			return "-";
+		} else {
+			return String.valueOf(rnd.nextInt(31) + 1);
+		}
+	}
+	
+	public String generateRandomNumber() {
+		Random rnd = new Random();
+		if (rnd.nextInt(3) == 0) {
+			return "";
+		} else {
+			return String.valueOf(Math.abs(rnd.nextInt()));
+		}
+	}
+	
+	public String generateRandomMonth() {
+		String[] twelvemonth = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		Random rnd = new Random();
+		if (rnd.nextInt(3) == 0) {
+			return "-";
+		} else {
+			int index = new Random().nextInt(12);
+			return twelvemonth[index];
+		}
+
+	}
+	
 }

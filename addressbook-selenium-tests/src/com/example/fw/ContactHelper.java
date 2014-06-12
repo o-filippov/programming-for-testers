@@ -1,9 +1,11 @@
 package com.example.fw;
 
-import com.example.tests.ContactData;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.openqa.selenium.By;
+
+import com.example.tests.ContactData;
 
 public class ContactHelper extends HelperBase {
 
@@ -67,5 +69,5 @@ public class ContactHelper extends HelperBase {
 		}
 		return contacts;
 	}
-
+	
 }
