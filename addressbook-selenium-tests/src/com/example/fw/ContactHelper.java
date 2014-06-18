@@ -69,27 +69,15 @@ public class ContactHelper extends HelperBase {
 
 	private	List<ContactData> cachedContacts;	
 
-	/* Method returns null. I don't know why
-	 * 
-	 * public List<ContactData> getContacts() {
-	 *
-		if (cachedContacts == null) {
-			rebuildCache();
-		}
-		return cachedContacts;
-	} */
-	
-	// And this method is almost the same as the previous, plus debugRebuildCache and works fine
 	public List<ContactData> getContacts() {
 		if (cachedContacts == null) {
-			List<ContactData> debugRebuildCache = rebuildCache();
-			cachedContacts = debugRebuildCache;
+			rebuildCache();
 		}
 		return cachedContacts;
 	}
 	
 	private List<ContactData> rebuildCache() {
-		List<ContactData> cachedContacts = new ArrayList<ContactData>();
+		cachedContacts = new ArrayList<ContactData>();
 		int number_of_rows = Integer.parseInt(driver.findElement(By.xpath("//body/div/div[4]/label/strong/span")).getText()); // may be calculated with " = driver.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[1]")).size();"
 		for (int i = 2; i <= number_of_rows + 1; i++) {
 			ContactData contact = new ContactData();
