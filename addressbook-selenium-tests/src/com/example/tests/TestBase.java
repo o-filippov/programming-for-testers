@@ -56,21 +56,21 @@ public class TestBase {
 	public Iterator<Object[]> randomValidContactGenerator() {
 		List<Object[]> list = new ArrayList<Object[]>();
 		for (int i = 0; i < 5; i++) {
-			ContactData contact = new ContactData();
-			contact.first_name = generateRandomString();
-			contact.last_name = generateRandomString();
-			contact.address = generateRandomString();
-			contact.home_phone = generateRandomNumber();
-			contact.mobile_phone = generateRandomNumber();
-			contact.work_phone = generateRandomNumber();
-			contact.email = generateRandomString();
-			contact.email_2 = generateRandomString();
-			contact.birth_day = generateRandomDay();
-			contact.birth_month = generateRandomMonth();
-			contact.birth_year = generateRandomYear();
-			contact.group = "[none]"; // probably should be done in the future
-			contact.address_2 = generateRandomString();
-			contact.home_phone_2 = generateRandomNumber();
+			ContactData contact = new ContactData()
+			.withFirstName(generateRandomString())
+			.withLastName(generateRandomString())
+			.withAddress(generateRandomString())
+			.withHomePhone(generateRandomNumber())
+			.withMobilePhone(generateRandomNumber())
+			.withWorkPhone(generateRandomNumber())
+			.withEmail(generateRandomString())
+			.withEmail2(generateRandomString())
+			.withBirthDay(generateRandomDay())
+			.withBirthMonth(generateRandomMonth())
+			.withBirthYear(generateRandomYear())
+			.withGroup("[none]")
+			.withAddress2(generateRandomString())
+			.withHomePhone2(generateRandomNumber());
 			list.add(new Object[]{contact});
 		}
 		return list.iterator();

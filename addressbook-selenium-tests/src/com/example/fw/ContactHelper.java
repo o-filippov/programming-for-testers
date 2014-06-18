@@ -1,5 +1,7 @@
 package com.example.fw;
 
+import static com.example.fw.ContactHelper.CREATION;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,60 +17,6 @@ public class ContactHelper extends HelperBase {
 		super(manager);
 	}
 
-	public void initContactCreation() {
-		click(By.linkText("add new"));
-	}
-
-	public void fillContactForm(ContactData contact, boolean formType) {
-		type(By.name("firstname"), contact.first_name);
-	    type(By.name("firstname"), contact.first_name);
-	    type(By.name("lastname"), contact.last_name);
-	    type(By.name("address"), contact.address);
-	    type(By.name("home"), contact.home_phone);
-	    type(By.name("mobile"), contact.mobile_phone);
-	    type(By.name("work"), contact.work_phone);
-	    type(By.name("email"), contact.email);
-	    type(By.name("email2"), contact.email_2);
-		selectByText(By.name("bday"), contact.birth_day);
-		selectByText(By.name("bmonth"), contact.birth_month);
-	    type(By.name("byear"), contact.birth_year);
-	    if (formType == CREATION) {
-			selectByText(By.name("new_group"), "[none]");
-	    } /* else {
-	    		if (driver.findElements(By.name("new_group")).size() != 0) {
-	    			throw new Error("Group selector exists in contact modification form");
-	    		} 
-	    	} */
-	    type(By.name("address2"), contact.address_2);
-	    type(By.name("phone2"), contact.home_phone_2);
-	}
-
-	public void submitContactCreation() {
-		click(By.name("submit"));
-		cachedContacts = null;
-	}
-
-	public void returnToMainPage() {
-		click(By.linkText("home page"));
-	}
-
-	public void deleteContact(int index) {
-		initContactEditingByIndex(index);
-		click(By.xpath("(//input[@name='update'])[2]"));
-		cachedContacts = null;
-		}
-
-	public void initContactEditingByIndex(int index) {
-		click(By.xpath("(//img[@alt='Edit'])[" + (index + 1) + "]"));
-		}
-
-	public void submitContactModification() {
-		click(By.xpath("(//input[@name='update'])[1]"));
-		cachedContacts = null;
-	}
-
-	private	List<ContactData> cachedContacts;	
-
 	public List<ContactData> getContacts() {
 		if (cachedContacts == null) {
 			rebuildCache();
@@ -76,16 +24,107 @@ public class ContactHelper extends HelperBase {
 		return cachedContacts;
 	}
 	
+	public ContactHelper createContact(ContactData contact, boolean CREATION) {
+		initContactCreation();
+   		fillContactForm(contact, CREATION);
+   		submitContactCreation();
+   		returnToMainPage();
+   		return this;
+	}
+	
+	public ContactHelper modifyContact(int index, ContactData contact, boolean MODIFICATION) {
+		initContactEditingByIndex(index);
+		fillContactForm(contact, MODIFICATION);
+		submitContactModification();
+		returnToMainPage();		
+		return this;
+	}
+	
+	public ContactHelper deleteContact(int index) {
+		initContactEditingByIndex(index);
+		confirmContactDeletion();
+		returnToMainPage();
+		cachedContacts = null;
+		return this;
+	}
+
+//-----------------------------------------------------------------------------
+	
+	public ContactHelper initContactCreation() {
+		manager.navigateTo().mainPage();
+		click(By.linkText("add new"));
+		return this;
+	}
+
+	public ContactHelper fillContactForm(ContactData contact, boolean formType) {
+	    type(By.name("firstname"), contact.getFirstName());
+	    type(By.name("lastname"), contact.getLastName());
+	    type(By.name("address"), contact.getAddress());
+	    type(By.name("home"), contact.getHomePhone());
+	    type(By.name("mobile"), contact.getMobilePhone());
+	    type(By.name("work"), contact.getWorkPhone());
+	    type(By.name("email"), contact.getEmail());
+	    type(By.name("email2"), contact.getEmail2());
+		selectByText(By.name("bday"), contact.getBirthDay());
+		selectByText(By.name("bmonth"), contact.getBirthMonth());
+	    type(By.name("byear"), contact.getBirthYear());
+	    if (formType == CREATION) {
+			selectByText(By.name("new_group"), "[none]");
+	    } /* else {
+	    		if (driver.findElements(By.name("new_group")).size() != 0) {
+	    			throw new Error("Group selector exists in contact modification form");
+	    		} 
+	    	} */
+	    type(By.name("address2"), contact.getAddress2());
+	    type(By.name("phone2"), contact.getHomePhone2());
+		return this;
+	}
+
+	public ContactHelper submitContactCreation() {
+		click(By.name("submit"));
+		cachedContacts = null;
+		return this;
+	}
+
+	public ContactHelper returnToMainPage() {
+		click(By.linkText("home page"));
+		return this;
+	}
+
+	public ContactHelper initContactEditingByIndex(int index) {
+		manager.navigateTo().mainPage();
+		click(By.xpath("(//img[@alt='Edit'])[" + (index + 1) + "]"));
+		return this;
+	}
+
+	public ContactHelper submitContactModification() {
+		click(By.xpath("(//input[@name='update'])[1]"));
+		cachedContacts = null;
+		return this;
+	}
+	
+	public void confirmContactDeletion() {
+		click(By.xpath("(//input[@name='update'])[2]"));
+	}
+
+	private	List<ContactData> cachedContacts;	
+
 	private List<ContactData> rebuildCache() {
 		cachedContacts = new ArrayList<ContactData>();
+		
+		manager.navigateTo().mainPage();
 		int number_of_rows = Integer.parseInt(driver.findElement(By.xpath("//body/div/div[4]/label/strong/span")).getText()); // may be calculated with " = driver.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[1]")).size();"
 		for (int i = 2; i <= number_of_rows + 1; i++) {
-			ContactData contact = new ContactData();
-			contact.last_name = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
-			contact.first_name = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
-			contact.email = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
-			contact.home_phone = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[5]")).getText();
-			cachedContacts.add(contact);	
+			String lastName = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
+			String firstName = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
+			String email = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
+			String homePhone = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[5]")).getText();
+			cachedContacts.add(
+				new ContactData()
+						.withLastName(lastName)
+						.withFirstName(firstName)
+						.withEmail(email)
+						.withHomePhone(homePhone));
 		}
 		return cachedContacts;
 	}

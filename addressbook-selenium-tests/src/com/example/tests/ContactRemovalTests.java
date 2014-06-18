@@ -21,8 +21,7 @@ public class ContactRemovalTests extends TestBase {
 		    int index = rnd.nextInt(oldList.size()-1); // number of the contact to be removed
 			
 			app.getContactHelper().deleteContact(index);
-			app.getContactHelper().returnToMainPage();
-			
+					
 			// save new state
 			List<ContactData> newList = app.getContactHelper().getContacts();
 		 
