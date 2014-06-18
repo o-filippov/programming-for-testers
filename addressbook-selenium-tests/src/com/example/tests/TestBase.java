@@ -13,7 +13,7 @@ import com.example.fw.ApplicationManager;
 
 public class TestBase {
 	
-	protected static ApplicationManager app;
+	public static ApplicationManager app;
 
 	@BeforeTest
 	public void setUp() throws Exception {
@@ -29,10 +29,10 @@ public class TestBase {
 	public Iterator<Object[]> randomValidGroupGenerator() {
 		List<Object[]> list = new ArrayList<Object[]>();
 		for (int i = 0; i < 5; i++) {
-			GroupData group = new GroupData();
-			group.name = generateRandomString();		
-			group.header = generateRandomString();
-			group.footer = generateRandomString();
+			GroupData group = new GroupData()
+			 .withName(generateRandomString())
+			 .withHeader(generateRandomString())
+			 .withFooter(generateRandomString());
 			list.add(new Object[]{group});
 		}
 		// ....		
@@ -42,16 +42,20 @@ public class TestBase {
 	public String generateRandomString() {
 		Random rnd = new Random();
 		if (rnd.nextInt(3) == 0) {
-			return "";
+			String string = new String();
+			string = "";
+			return string;
 		} else {
-			return "test" + rnd.nextInt();
+			String string = new String();
+			string = "test" + rnd.nextInt();
+			return string; 
 		}
 	}
 	
 	@DataProvider
 	public Iterator<Object[]> randomValidContactGenerator() {
 		List<Object[]> list = new ArrayList<Object[]>();
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 2; i++) {
 			ContactData contact = new ContactData();
 			contact.first_name = generateRandomString();
 			contact.last_name = generateRandomString();
@@ -86,7 +90,7 @@ public class TestBase {
 		if (rnd.nextInt(3) == 0) {
 			return "-";
 		} else {
-			return String.valueOf(rnd.nextInt(31) + 1);
+			return String.valueOf(rnd.nextInt(29) + 1);
 		}
 	}
 	

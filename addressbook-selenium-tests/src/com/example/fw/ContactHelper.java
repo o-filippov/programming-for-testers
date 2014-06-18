@@ -9,6 +9,8 @@ import com.example.tests.ContactData;
 
 public class ContactHelper extends HelperBase {
 
+	public static boolean CREATION = true;
+	public static boolean MODIFICATION = false;
 	public ContactHelper(ApplicationManager manager) {
 		super(manager);
 	}
@@ -17,7 +19,7 @@ public class ContactHelper extends HelperBase {
 		click(By.linkText("add new"));
 	}
 
-	public void fillContactForm(ContactData contact) {
+	public void fillContactForm(ContactData contact, boolean formType) {
 		type(By.name("firstname"), contact.first_name);
 	    type(By.name("firstname"), contact.first_name);
 	    type(By.name("lastname"), contact.last_name);
@@ -30,13 +32,20 @@ public class ContactHelper extends HelperBase {
 		selectByText(By.name("bday"), contact.birth_day);
 		selectByText(By.name("bmonth"), contact.birth_month);
 	    type(By.name("byear"), contact.birth_year);
-		//selectByText(By.name("new_group"), contact.group);
+	    if (formType == CREATION) {
+			selectByText(By.name("new_group"), "[none]");
+	    } /* else {
+	    		if (driver.findElements(By.name("new_group")).size() != 0) {
+	    			throw new Error("Group selector exists in contact modification form");
+	    		} 
+	    	} */
 	    type(By.name("address2"), contact.address_2);
 	    type(By.name("phone2"), contact.home_phone_2);
 	}
 
 	public void submitContactCreation() {
 		click(By.name("submit"));
+		cachedContacts = null;
 	}
 
 	public void returnToMainPage() {
@@ -46,6 +55,7 @@ public class ContactHelper extends HelperBase {
 	public void deleteContact(int index) {
 		initContactEditingByIndex(index);
 		click(By.xpath("(//input[@name='update'])[2]"));
+		cachedContacts = null;
 		}
 
 	public void initContactEditingByIndex(int index) {
@@ -54,10 +64,32 @@ public class ContactHelper extends HelperBase {
 
 	public void submitContactModification() {
 		click(By.xpath("(//input[@name='update'])[1]"));
+		cachedContacts = null;
 	}
 
+	private	List<ContactData> cachedContacts;	
+
+	/* Method returns null. I don't know why
+	 * 
+	 * public List<ContactData> getContacts() {
+	 *
+		if (cachedContacts == null) {
+			rebuildCache();
+		}
+		return cachedContacts;
+	} */
+	
+	// And this method is almost the same as the previous, plus debugRebuildCache and works fine
 	public List<ContactData> getContacts() {
-		List<ContactData> contacts = new ArrayList<ContactData>();
+		if (cachedContacts == null) {
+			List<ContactData> debugRebuildCache = rebuildCache();
+			cachedContacts = debugRebuildCache;
+		}
+		return cachedContacts;
+	}
+	
+	private List<ContactData> rebuildCache() {
+		List<ContactData> cachedContacts = new ArrayList<ContactData>();
 		int number_of_rows = Integer.parseInt(driver.findElement(By.xpath("//body/div/div[4]/label/strong/span")).getText()); // may be calculated with " = driver.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[1]")).size();"
 		for (int i = 2; i <= number_of_rows + 1; i++) {
 			ContactData contact = new ContactData();
@@ -65,9 +97,9 @@ public class ContactHelper extends HelperBase {
 			contact.first_name = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
 			contact.email = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
 			contact.home_phone = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[5]")).getText();
-			contacts.add(contact);
+			cachedContacts.add(contact);	
 		}
-		return contacts;
+		return cachedContacts;
 	}
 	
 }
