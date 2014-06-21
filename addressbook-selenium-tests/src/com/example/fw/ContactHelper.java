@@ -1,13 +1,11 @@
 package com.example.fw;
 
-import static com.example.fw.ContactHelper.CREATION;
-
-import java.util.ArrayList;
-import java.util.List;
+// import static com.example.fw.ContactHelper.CREATION;
 
 import org.openqa.selenium.By;
 
 import com.example.tests.ContactData;
+import com.example.utils.SortedListOf;
 
 public class ContactHelper extends HelperBase {
 
@@ -17,9 +15,31 @@ public class ContactHelper extends HelperBase {
 		super(manager);
 	}
 
-	public List<ContactData> getContacts() {
+	public SortedListOf<ContactData> getContacts() {
 		if (cachedContacts == null) {
 			rebuildCache();
+		}
+		return cachedContacts;
+	}
+	
+	private	SortedListOf<ContactData> cachedContacts;	
+
+	private SortedListOf<ContactData> rebuildCache() {
+		cachedContacts = new SortedListOf<ContactData>();
+		
+		manager.navigateTo().mainPage();
+		int number_of_rows = Integer.parseInt(driver.findElement(By.xpath("//body/div/div[4]/label/strong/span")).getText()); // may be calculated with " = driver.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[1]")).size();"
+		for (int i = 2; i <= number_of_rows + 1; i++) {
+			String lastName = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
+			String firstName = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
+			String email = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
+			String homePhone = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[5]")).getText();
+			cachedContacts.add(
+				new ContactData()
+						.withLastName(lastName)
+						.withFirstName(firstName)
+						.withEmail(email)
+						.withHomePhone(homePhone));
 		}
 		return cachedContacts;
 	}
@@ -29,6 +49,7 @@ public class ContactHelper extends HelperBase {
    		fillContactForm(contact, CREATION);
    		submitContactCreation();
    		returnToMainPage();
+   		rebuildCache();
    		return this;
 	}
 	
@@ -37,6 +58,7 @@ public class ContactHelper extends HelperBase {
 		fillContactForm(contact, MODIFICATION);
 		submitContactModification();
 		returnToMainPage();		
+		rebuildCache();
 		return this;
 	}
 	
@@ -44,14 +66,13 @@ public class ContactHelper extends HelperBase {
 		initContactEditingByIndex(index);
 		confirmContactDeletion();
 		returnToMainPage();
-		cachedContacts = null;
+		rebuildCache();	
 		return this;
 	}
 
 //-----------------------------------------------------------------------------
 	
 	public ContactHelper initContactCreation() {
-		manager.navigateTo().mainPage();
 		click(By.linkText("add new"));
 		return this;
 	}
@@ -107,26 +128,4 @@ public class ContactHelper extends HelperBase {
 		click(By.xpath("(//input[@name='update'])[2]"));
 	}
 
-	private	List<ContactData> cachedContacts;	
-
-	private List<ContactData> rebuildCache() {
-		cachedContacts = new ArrayList<ContactData>();
-		
-		manager.navigateTo().mainPage();
-		int number_of_rows = Integer.parseInt(driver.findElement(By.xpath("//body/div/div[4]/label/strong/span")).getText()); // may be calculated with " = driver.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[1]")).size();"
-		for (int i = 2; i <= number_of_rows + 1; i++) {
-			String lastName = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
-			String firstName = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
-			String email = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
-			String homePhone = driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[5]")).getText();
-			cachedContacts.add(
-				new ContactData()
-						.withLastName(lastName)
-						.withFirstName(firstName)
-						.withEmail(email)
-						.withHomePhone(homePhone));
-		}
-		return cachedContacts;
-	}
-	
 }
