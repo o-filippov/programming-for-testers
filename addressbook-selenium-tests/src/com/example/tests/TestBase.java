@@ -1,15 +1,14 @@
 package com.example.tests;
 
+import static com.example.tests.ContactDataGenerator.generateRandomContacts;
+import static com.example.tests.GroupDataGenerator.generateRandomGroups;
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-
-import static com.example.tests.GroupDataGenerator.generateRandomGroups;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-import java.util.Random;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -47,80 +46,16 @@ public class TestBase {
 		return list;
 	}
 
-	public String generateRandomString() {
-		Random rnd = new Random();
-		if (rnd.nextInt(3) == 0) {
-			String string = new String();
-			string = "";
-			return string;
-		} else {
-			String string = new String();
-			string = "test" + rnd.nextInt();
-			return string; 
-		}
-	}
-	
 	@DataProvider
 	public Iterator<Object[]> randomValidContactGenerator() {
+		return wrapContactsForDataProvider(generateRandomContacts(5)).iterator();
+	}
+
+	private List<Object[]> wrapContactsForDataProvider(List<ContactData> contacts) {
 		List<Object[]> list = new ArrayList<Object[]>();
-		for (int i = 0; i < 5; i++) {
-			ContactData contact = new ContactData()
-			.withFirstName(generateRandomString())
-			.withLastName(generateRandomString())
-			.withAddress(generateRandomString())
-			.withHomePhone(generateRandomNumber())
-			.withMobilePhone(generateRandomNumber())
-			.withWorkPhone(generateRandomNumber())
-			.withEmail(generateRandomString())
-			.withEmail2(generateRandomString())
-			.withBirthDay(generateRandomDay())
-			.withBirthMonth(generateRandomMonth())
-			.withBirthYear(generateRandomYear())
-			.withGroup("[none]")
-			.withAddress2(generateRandomString())
-			.withHomePhone2(generateRandomNumber());
+		for (ContactData contact : contacts) {
 			list.add(new Object[]{contact});
 		}
-		return list.iterator();
-	}
-	
-	public String generateRandomYear() {
-		Random rnd = new Random();
-		if (rnd.nextInt(3) == 0) {
-			return "";
-		} else {
-			return String.valueOf(rnd.nextInt(110) + 1900);
-		}
-	}
-	
-	public String generateRandomDay() {
-		Random rnd = new Random();
-		if (rnd.nextInt(3) == 0) {
-			return "-";
-		} else {
-			return String.valueOf(rnd.nextInt(29) + 1);
-		}
-	}
-	
-	public String generateRandomNumber() {
-		Random rnd = new Random();
-		if (rnd.nextInt(3) == 0) {
-			return "";
-		} else {
-			return String.valueOf(Math.abs(rnd.nextInt()));
-		}
-	}
-	
-	public String generateRandomMonth() {
-		String[] twelvemonth = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-		Random rnd = new Random();
-		if (rnd.nextInt(3) == 0) {
-			return "-";
-		} else {
-			int index = new Random().nextInt(12);
-			return twelvemonth[index];
-		}
-
-	}
-	
+		return list;
+	}	
 }
