@@ -1,0 +1,34 @@
+<list>
+  <contact>
+    <firstName></firstName>
+    <lastName>test-346915897</lastName>
+    <address></address>
+    <homePhone>1281865454</homePhone>
+    <mobilePhone></mobilePhone>
+    <workPhone>1545543870</workPhone>
+    <email></email>
+    <email2></email2>
+    <birthDay>-</birthDay>
+    <birthMonth>June</birthMonth>
+    <birthYear></birthYear>
+    <group>[none]</group>
+    <address2></address2>
+    <homePhone2>1065344248</homePhone2>
+  </contact>
+  <contact>
+    <firstName></firstName>
+    <lastName>test-986853919</lastName>
+    <address>test-1891600233</address>
+    <homePhone>2129493689</homePhone>
+    <mobilePhone>639682214</mobilePhone>
+    <workPhone></workPhone>
+    <email></email>
+    <email2></email2>
+    <birthDay>17</birthDay>
+    <birthMonth>November</birthMonth>
+    <birthYear></birthYear>
+    <group>[none]</group>
+    <address2>test-1327133951</address2>
+    <homePhone2>1809230747</homePhone2>
+  </contact>
+</list>
