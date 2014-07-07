@@ -32,5 +32,4 @@ public class NavigationHelper extends HelperBase {
 			return false;
 		}
 	}
-
 }

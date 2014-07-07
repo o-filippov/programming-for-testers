@@ -65,5 +65,4 @@ public abstract class HelperBase {
 		if (text != null)
 			new Select(driver.findElement(locator)).selectByVisibleText(text);
 	}
-
 }

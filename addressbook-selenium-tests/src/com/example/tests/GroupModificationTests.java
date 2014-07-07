@@ -29,5 +29,4 @@ public class GroupModificationTests extends TestBase {
 	    //compare states
 		assertThat(newList, equalTo(oldList.without(index).withAdded(group)));
 	}
-
 }

@@ -1,21 +1,21 @@
 package com.example.tests;
 
 import static com.example.fw.ContactHelper.MODIFICATION;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.testng.Assert.assertEquals;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import org.testng.annotations.Test;
 
-import com.example.utils.SortedListOf;
 
 public class ContactModificationTests extends TestBase {
 	
 	@Test(dataProvider = "randomValidContactGenerator")
 	public void modifySomeContact(ContactData contact) {
 		// save state
-		SortedListOf<ContactData> oldList = app.getContactHelper().getContacts();
+		List<ContactData> oldList = app.getContactHelper().getContacts();
 		
 		// actions
 		Random rnd = new Random();
@@ -24,11 +24,12 @@ public class ContactModificationTests extends TestBase {
 		app.getContactHelper().modifyContact(index, contact, MODIFICATION);
 		
 		// save new state
-		SortedListOf<ContactData> newList = app.getContactHelper().getContacts();
+		List<ContactData> newList = app.getContactHelper().getContacts();
 	 
 	    // compare states
-	    assertThat(newList, equalTo(oldList.without(index).withAdded(contact)));
-
+		oldList.remove(index);
+	    oldList.add(contact);
+	    Collections.sort(oldList);
+	    assertEquals(newList, oldList);
 	}
-	
 }

@@ -27,8 +27,6 @@ public class GroupRemovalTests extends TestBase {
 		SortedListOf<GroupData> newList = app.getGroupHelper().getGroups();
 	    
 	    //compare states
-		assertThat(newList, equalTo(oldList.without(index)));
-	  
+		assertThat(newList, equalTo(oldList.without(index)));  
 	}
-
 }

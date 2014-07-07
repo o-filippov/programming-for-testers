@@ -75,9 +75,5 @@ public class GroupData implements Comparable<GroupData> {
 
 	public String getFooter() {
 		return footer;
-	}
-
-	
-	
-	
+	}	
 }

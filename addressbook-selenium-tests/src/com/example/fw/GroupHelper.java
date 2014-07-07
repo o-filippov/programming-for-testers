@@ -78,7 +78,6 @@ public class GroupHelper extends HelperBase {
 
 	public GroupHelper submitGroupCreation() {
 		click(By.name("submit"));
-		cachedGroups = null;
 	    return this;
 	}
 
@@ -99,13 +98,10 @@ public class GroupHelper extends HelperBase {
 
 	public GroupHelper submitGroupModification() {
 		click(By.name("update"));
-		cachedGroups = null;
 	    return this;
 	}
 	
 	public void submitGroupDeletion() {
 		click(By.name("delete"));
-		cachedGroups = null;
 	}
-
 }
